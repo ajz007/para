@@ -281,6 +281,34 @@ Please try to respect the code style of this project. To check your code, run it
 mvn validate
 ```
 
+###Example to update the database to MongoDB
+1. Update the pom.xml entry in para-server
+```
+<dependency>
+  <groupId>com.erudika</groupId>
+  <artifactId>para-dao-mongodb</artifactId>
+  <version>{version}</version>
+</dependency>
+```
+2. Update the application.conf (which we create manually during startup) with following
+```
+# setting the URI will override host, port, database, user, password below
+# URI is left blank by default
+para.mongodb.uri = ""
+# para.mongodb.uri = "mongodb://user:pass@localhost:27017,localhost:37017/MyApp"
+
+para.mongodb.host = "localhost"
+para.mongodb.port = 27017
+para.mongodb.database = "MyApp"
+para.mongodb.user = "user"
+para.mongodb.password = "pass"
+para.mongodb.ssl_enabled = false
+para.mongodb.ssl_allow_all = false
+```
+3. Update the reference.conf
+```
+para.dao = "MongoDBDAO"
+```
 For more information see [CONTRIBUTING.md](https://github.com/Erudika/para/blob/master/CONTRIBUTING.md)
 
 ## License
